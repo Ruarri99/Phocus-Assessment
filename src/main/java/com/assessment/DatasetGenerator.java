@@ -17,22 +17,27 @@ public class DatasetGenerator {
     private static final List<String> countryPool = Arrays.asList("New Zealand", "Australia", "USA", "Germany", "Italy", "China", "Japan", "Mexico", "South Africa", "Canada", "Sweden", "England", "Russia");
 
     public static void generateData(int rowCount, String outputFile) throws IOException {
+        // Create the empty "dataset" array of "Person" objects
         Random random = new Random();
-        List<Person> dataset = new ArrayList<>(); // Create the empty "dataset" array of "Person" objects
+        List<Person> dataset = new ArrayList<>();
 
-        for (int i = 1; i <= rowCount; i++) { // Adds "rowCount" number of "Person" objects to the "dataset" array
+        // Adds "rowCount" number of "Person" objects to the "dataset" array
+        for (int i = 1; i <= rowCount; i++) {
             String id = String.valueOf(i);
             String firstName = namePool.get(random.nextInt(namePool.size()));
             String lastName = namePool.get(random.nextInt(namePool.size()));
-            int age = random.nextInt(100) + 1; // Generates an age from 1 - 100 inclusive
+            int age = random.nextInt(100) + 1;  // Generates an age from 1 - 100 inclusive
             String country = countryPool.get(random.nextInt(countryPool.size()));
 
             dataset.add(new Person(id, firstName, lastName, age, country));
         }
 
-        try (BufferedWriter jsonWriter = Files.newBufferedWriter(Paths.get(outputFile))) { // Open the output file with a buffered writer
+        // Open the output file with a buffered writer
+        try (BufferedWriter jsonWriter = Files.newBufferedWriter(Paths.get(outputFile))) {
             Gson gson = new Gson();
-            for (Person person : dataset) { // Write each person to the output file as an NDJSON row
+
+            // Write each person to the output file as an NDJSON row
+            for (Person person : dataset) {
                 jsonWriter.write(gson.toJson(person));
                 jsonWriter.newLine();
             }

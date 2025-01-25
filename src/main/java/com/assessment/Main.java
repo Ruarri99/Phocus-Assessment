@@ -5,6 +5,10 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        new Main().run(args);
+    }
+
+    public void run(String args[]) throws IOException {
         if (args.length < 2) {
             displayHelp();
             return;
