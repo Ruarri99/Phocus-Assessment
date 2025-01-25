@@ -16,7 +16,7 @@ public class DatasetGenerator {
     private static final List<String> namePool = Arrays.asList("Tom", "Cruise", "Matt", "Damon", "Jason", "Statham", "Rose", "Tyler", "Conner", "Price", "Michael", "Jackson", "Matt", "Smith", "Angelina", "Jolie", "Emily", "Blunt", "John", "Krasinski", "Jenna", "Fischer");
     private static final List<String> countryPool = Arrays.asList("New Zealand", "Australia", "USA", "Germany", "Italy", "China", "Japan", "Mexico", "South Africa", "Canada", "Sweden", "England", "Russia");
 
-    public static void generateData(int rowCount, String outputFile) throws IOException {
+    public static List<Person> generateDataset(int rowCount, String outputFile) throws IOException {
         // Create the empty "dataset" array of "Person" objects
         Random random = new Random();
         List<Person> dataset = new ArrayList<>();
@@ -32,6 +32,10 @@ public class DatasetGenerator {
             dataset.add(new Person(id, firstName, lastName, age, country));
         }
 
+        return dataset;     
+    }
+
+    public static void writeDataToJSONFile(List<Person> dataset, String outputFile) throws IOException {
         // Open the output file with a buffered writer
         try (BufferedWriter jsonWriter = Files.newBufferedWriter(Paths.get(outputFile))) {
             Gson gson = new Gson();
@@ -42,8 +46,6 @@ public class DatasetGenerator {
                 jsonWriter.newLine();
             }
         }
-        
-
     }
     
 }

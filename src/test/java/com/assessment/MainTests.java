@@ -73,15 +73,15 @@ public class MainTests {
         // Mock the DatasetGenerator method
         try (MockedStatic<DatasetGenerator> mockDataGen = mockStatic(DatasetGenerator.class)) {
             // Make sure the method does nothing when called
-            mockDataGen.when(() -> DatasetGenerator.generateData(10, "AutoGenDataset.json")).thenAnswer((Answer<Void>) invocation -> null);
+            mockDataGen.when(() -> DatasetGenerator.generateDataset(10, "AutoGenDataset.json")).then((Answer<Void>) invocation -> null);
         
             // Pass correct args to generate 10 rows
             String[] args = {"generate", "10"};
             Main main = new Main();
             main.run(args);
 
-            // Verify the dataset generator method was called as expected
-            mockDataGen.verify(() -> DatasetGenerator.generateData(10, "AutoGenDataset.json"), times(1));
+            // Verify the dataset generator method was called once as expected
+            mockDataGen.verify(() -> DatasetGenerator.generateDataset(10, "AutoGenDataset.json"), times(1));
         }
     }
 

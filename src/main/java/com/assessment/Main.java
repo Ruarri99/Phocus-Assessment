@@ -1,6 +1,7 @@
 package com.assessment;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
 
@@ -19,7 +20,8 @@ public class Main {
                 int rowCount = Integer.parseInt(args[1]);
                 String outputFile = "AutoGenDataset.json";
 
-                DatasetGenerator.generateData(rowCount, outputFile);
+                List<Person> generatedDataset = DatasetGenerator.generateDataset(rowCount, outputFile); // Generate a dataset
+                DatasetGenerator.writeDataToJSONFile(generatedDataset, outputFile); // Write dataset to file as NDJSON
                 break;
 
             default:
