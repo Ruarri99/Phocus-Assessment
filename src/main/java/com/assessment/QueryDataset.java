@@ -42,10 +42,15 @@ public class QueryDataset {
 
             while ((readLine = jsonReader.readLine()) != null) {
                 Person person = gson.fromJson(readLine, Person.class);
+
+                // Check if person has valid variables
+                if (person.isValid() == false) {
+                    throw new Exception();
+                }
                 dataset.add(person);
             }
         } catch (Exception e) {
-            System.out.println("Invalid file given: " + inputFile);
+            return null;
         }
 
         return dataset;

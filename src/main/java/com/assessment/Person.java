@@ -5,7 +5,7 @@ public class Person {
     String id;
     String firstName;
     String lastName;
-    int age;
+    Integer age;
     String country;
 
     public Person(String id, String firstName, String lastName, int age, String country) {
@@ -16,4 +16,7 @@ public class Person {
         this.country = country;
     }
 
+    public boolean isValid() {
+        return (this.id != null && this.firstName != null && this.lastName != null && this.age != null && this.country != null);
+    }
 }

@@ -37,6 +37,12 @@ public class Main {
                 String inputFile = args[1];
                 List<Person> dataset = QueryDataset.readDataFromNDJSONFile(inputFile);
 
+                // Check if dataset is null;
+                if (dataset == null) {
+                    System.out.println("Invalid file given: " + inputFile);
+                    break;
+                }
+
                 // Query dataset
                 QueryDataset.queryDataset(dataset);
                 break;

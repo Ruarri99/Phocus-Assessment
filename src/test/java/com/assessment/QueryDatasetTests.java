@@ -3,23 +3,18 @@ package com.assessment;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.junit.Test;
 
 public class QueryDatasetTests {
-    
+
     @Test
-    public void testReadInvalidFileGiven() throws IOException {
-        // Redirect system output
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        
+    public void testReadInvalidFileGiven() throws IOException {        
         // Create a file with invalid data
         String testFile = "TestFile.json";
         File newFile = new File(testFile);
@@ -33,10 +28,10 @@ public class QueryDatasetTests {
         }
      
         // Open and read the file
-        QueryDataset.readDataFromNDJSONFile(testFile);
+        List<Person> dataset = QueryDataset.readDataFromNDJSONFile(testFile);
 
-        // Verify the file contains zero rows
-        assertTrue(outContent.toString().contains("Invalid file given: " + testFile));
+        // Verify the file is invalid
+        assertTrue(dataset == null);
 
         // Cleanup
         System.setOut(System.out);
