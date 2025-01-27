@@ -32,6 +32,15 @@ public class Main {
                 DatasetGenerator.writeDataToNDJSONFile(generatedDataset, outputFile); // Write dataset to file as NDJSON
                 break;
 
+            case "query":
+                // Read dataset file
+                String inputFile = args[1];
+                List<Person> dataset = DatasetGenerator.readDataFromNDJSONFile(inputFile);
+
+                // Query dataset
+                QueryDataset.queryDataset(dataset);
+                break;
+
             default:
                 displayHelp();
                 break;
