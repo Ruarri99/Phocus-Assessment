@@ -21,7 +21,7 @@ public class Main {
                 String outputFile = "AutoGenDataset.json";
 
                 List<Person> generatedDataset = DatasetGenerator.generateDataset(rowCount, outputFile); // Generate a dataset
-                DatasetGenerator.writeDataToJSONFile(generatedDataset, outputFile); // Write dataset to file as NDJSON
+                DatasetGenerator.writeDataToNDJSONFile(generatedDataset, outputFile); // Write dataset to file as NDJSON
                 break;
 
             default:
