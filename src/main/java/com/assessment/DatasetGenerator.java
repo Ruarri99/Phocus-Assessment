@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -35,7 +36,7 @@ public class DatasetGenerator {
         return dataset;     
     }
 
-    public static void writeDataToJSONFile(List<Person> dataset, String outputFile) throws IOException {
+    public static void writeDataToNDJSONFile(List<Person> dataset, String outputFile) throws IOException {
         // Open the output file with a buffered writer
         try (BufferedWriter jsonWriter = Files.newBufferedWriter(Paths.get(outputFile))) {
             Gson gson = new Gson();
@@ -46,6 +47,23 @@ public class DatasetGenerator {
                 jsonWriter.newLine();
             }
         }
+    }
+
+    public static List<Person> readDataFromNDJSONFile(String inputFile) throws IOException {
+        List<Person> dataset = new ArrayList<>();
+
+        // Open NDJSON file and read
+        try (BufferedReader jsonReader = Files.newBufferedReader(Paths.get(inputFile))) {
+            Gson gson = new Gson();
+            String readLine;
+
+            while ((readLine = jsonReader.readLine()) != null) {
+                Person person = gson.fromJson(readLine, Person.class);
+                dataset.add(person);
+            }
+        }
+
+        return dataset;
     }
     
 }
