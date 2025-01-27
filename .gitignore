@@ -25,3 +25,9 @@ replay_pid*
 
 # Maven target directory
 target/
+
+# VSCode directory
+.vscode/
+
+# Auto Generated Dataset
+AutoGenDataset.json
