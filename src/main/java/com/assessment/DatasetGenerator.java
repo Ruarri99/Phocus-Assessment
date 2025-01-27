@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -47,25 +46,5 @@ public class DatasetGenerator {
                 jsonWriter.newLine();
             }
         }
-    }
-
-    public static List<Person> readDataFromNDJSONFile(String inputFile) throws IOException {
-        List<Person> dataset = new ArrayList<>();
-
-        // Open NDJSON file and read
-        try (BufferedReader jsonReader = Files.newBufferedReader(Paths.get(inputFile))) {
-            Gson gson = new Gson();
-            String readLine;
-
-            while ((readLine = jsonReader.readLine()) != null) {
-                Person person = gson.fromJson(readLine, Person.class);
-                dataset.add(person);
-            }
-        } catch (Exception e) {
-            System.out.println("Invalid file given: " + inputFile);
-        }
-
-        return dataset;
-    }
-    
+    }    
 }
