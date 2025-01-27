@@ -2,13 +2,9 @@ package com.assessment;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.util.List;
 
 import org.junit.Test;
