@@ -61,6 +61,8 @@ public class DatasetGenerator {
                 Person person = gson.fromJson(readLine, Person.class);
                 dataset.add(person);
             }
+        } catch (Exception e) {
+            System.out.println("Invalid file given: " + inputFile);
         }
 
         return dataset;
