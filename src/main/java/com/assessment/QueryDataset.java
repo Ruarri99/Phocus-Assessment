@@ -1,8 +1,15 @@
 package com.assessment;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
 
 public class QueryDataset {
     
@@ -25,6 +32,24 @@ public class QueryDataset {
         System.out.println("Average Age\n" + averageAge );
     }
 
+    public static List<Person> readDataFromNDJSONFile(String inputFile) throws IOException {
+        List<Person> dataset = new ArrayList<>();
+
+        // Open NDJSON file and read
+        try (BufferedReader jsonReader = Files.newBufferedReader(Paths.get(inputFile))) {
+            Gson gson = new Gson();
+            String readLine;
+
+            while ((readLine = jsonReader.readLine()) != null) {
+                Person person = gson.fromJson(readLine, Person.class);
+                dataset.add(person);
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid file given: " + inputFile);
+        }
+
+        return dataset;
+    }
 
     private static Person findOldestPerson(List<Person> dataset) {
         Person oldestPerson = dataset.get(0);

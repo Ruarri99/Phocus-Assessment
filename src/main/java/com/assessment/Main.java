@@ -35,7 +35,7 @@ public class Main {
             case "query":
                 // Read dataset file
                 String inputFile = args[1];
-                List<Person> dataset = DatasetGenerator.readDataFromNDJSONFile(inputFile);
+                List<Person> dataset = QueryDataset.readDataFromNDJSONFile(inputFile);
 
                 // Query dataset
                 QueryDataset.queryDataset(dataset);
