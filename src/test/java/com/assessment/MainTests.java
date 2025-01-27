@@ -31,6 +31,7 @@ public class MainTests {
         // Verify the help message is shown
         assertTrue(outContent.toString().contains("Usage:"));
 
+        // Cleanup
         System.setOut(System.out);
     }
 
@@ -48,6 +49,7 @@ public class MainTests {
         // Verify the help message is shown
         assertTrue(outContent.toString().contains("Usage:"));
 
+        // Cleanup
         System.setOut(System.out);
     }
 
@@ -65,6 +67,7 @@ public class MainTests {
         // Verify the help message is shown
         assertTrue(outContent.toString().contains("Usage:"));
 
+        // Cleanup
         System.setOut(System.out);
     }
 
